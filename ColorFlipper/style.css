@@ -1,0 +1,30 @@
+body {
+    font-family: 'comic sans ms', cursive;
+    font-size: 20px;
+}
+
+#pink {
+    background-color: #ffdbe1;
+}
+
+#blue {
+    background-color: hwb(197 80% 0%);
+}
+
+#yellow {
+    background-color: lightyellow;
+}
+
+#random {
+    background-color: #e7e7e7;
+}
+
+button {
+    width: 100px;
+    height: 50px;
+    border-radius: 5px;
+    border: 2px solid grey;
+    margin: 5px;
+    font-family: 'comic sans ms', cursive;
+    font-size: 20px;
+}
