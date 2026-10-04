@@ -5,11 +5,11 @@ function setColor(name) {
 }
 
 function randomColor() {
-    const red2 = Math.round(Math.random() * 255);
-    const green2 = Math.round(Math.random() * 255);
+    const red3 = Math.round(Math.random() * 255);
+    const green3 = Math.round(Math.random() * 255);
     const blue = Math.round(Math.random() * 255);
 
-    const color = `rgb(${red2}, ${green2}, ${blue})`;
+    const color = `rgb(${red3}, ${green3}, ${blue})`;
     body.style.backgroundColor = color
 }
 
