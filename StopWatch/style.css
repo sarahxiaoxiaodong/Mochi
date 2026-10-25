@@ -1,0 +1,37 @@
+.timerBtn{
+    width: 80px;
+    height: 30px;
+    border: 3px solid black;
+    border-radius: 12px;
+    color: black;
+    font-family: calibri, sans-serif;
+}
+
+.timerBtn:hover{
+    background-color: lightgrey;
+    color: black;
+}
+
+.timerBtn:active {
+    background-color: grey;
+    color: black;
+}
+
+#timeDisplay{
+    font-size: 75px;
+    color: black;
+    font-family: calibri, sans-serif;
+}
+#timeContainer{
+    text-align: center;
+    border: 3px solid;
+    border-radius: 25px;
+    background-color: white;
+    height: 150px;
+    width: 400px;
+}
+
+.title {
+    font-size: 50px;
+    font-family: calibri, sans-serif;
+}
