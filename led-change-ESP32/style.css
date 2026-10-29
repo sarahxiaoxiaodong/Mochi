@@ -1,24 +1,340 @@
+/* Has AI help */
+
 :root {
-    --pink-color: #ffd1dc;
-    --lightpink-color: #fce3e9;
-    --darkpink-color: #e3b3be;
+    --pink-color: #f6d5df;
+    --lightpink-color: #fdf0f4;
+    --darkpink-color: #e7b5c5;
+    --green-color: #b9e8c9;
+    --bg-color: #fffafb;
+    --text-color: #40353b;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 24px;
+    color: var(--text-color);
+    font-family: "Segoe UI", sans-serif;
+    isolation: isolate;
+}
+
+#bg-video {
+    position: fixed;
+    inset: 0;
+    z-index: -3;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none;
+}
+
+body::before,
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    pointer-events: none;
+}
+
+body::before {
+    background:
+        radial-gradient(circle at 15% 20%, rgba(255, 205, 239, 0.22), transparent 40%),
+        radial-gradient(circle at 85% 75%, rgba(207, 190, 255, 0.22), transparent 45%),
+        radial-gradient(circle, rgba(255, 255, 255, 0.9) 1px, transparent 2px),
+        radial-gradient(circle, rgba(255, 210, 239, 0.85) 1.5px, transparent 2.5px),
+        radial-gradient(circle, rgba(220, 202, 255, 0.85) 1px, transparent 2px);
+    background-size:
+        auto,
+        auto,
+        97px 113px,
+        157px 173px,
+        211px 197px;
+    background-position:
+        center,
+        center,
+        0 0,
+        35px 60px,
+        100px 20px;
+    animation: fairy-glow 8s ease-in-out infinite alternate;
+}
+
+body::after {
+    inset: -50%;
+    background: conic-gradient(
+        from 0deg,
+        rgba(255, 182, 219, 0.1),
+        rgba(222, 194, 255, 0.18),
+        rgba(255, 239, 249, 0.12),
+        rgba(188, 244, 225, 0.1),
+        rgba(255, 182, 219, 0.1)
+    );
+    filter: blur(65px);
+    animation: aurora-dream 24s linear infinite;
+}
+
+#title {
+    position: relative;
+    width: 400px;
+    max-width: 100%;
+    min-height: 80px;
+    padding: 20px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.95);
+    border-radius: 18px;
+    background: linear-gradient(
+        135deg,
+        rgba(255, 250, 255, 0.94),
+        rgba(255, 225, 243, 0.86),
+        rgba(235, 225, 255, 0.91)
+    );
+    font-size: 28px;
+    box-shadow:
+        0 0 8px rgba(255, 255, 255, 0.8),
+        0 0 20px rgba(255, 176, 224, 0.55),
+        0 0 45px rgba(210, 184, 255, 0.3),
+        inset 0 0 14px rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    animation: title-float 4s ease-in-out infinite;
+    transition: box-shadow 0.3s ease;
+}
+
+#title::after {
+    content: "";
+    position: absolute;
+    top: -60%;
+    left: -100%;
+    width: 65%;
+    height: 220%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.65),
+        transparent
+    );
+    transform: rotate(25deg);
+    pointer-events: none;
+    animation: title-shimmer 6s ease-in-out infinite;
+}
+
+#title:hover {
+    box-shadow:
+        0 6px 22px rgba(246, 181, 219, 0.55),
+        0 0 32px rgba(222, 198, 255, 0.45),
+        inset 0 1px 0 white;
 }
 
 .button {
-    width: 200px;
-    height: 100px;
-    font-size: 30px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    border-radius: 10px;
-    border: 3px solid black;
-    background-color: var(--pink-color);
-    margin: 10px;
+    position: relative;
+    width: 160px;
+    height: 64px;
+    margin: 8px;
+    padding: 12px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.98);
+    border-radius: 16px;
+    background: linear-gradient(
+        135deg,
+        #fff8fd,
+        #ffdced 35%,
+        #f0e2ff 70%,
+        #e1f8f0
+    );
+    color: var(--text-color);
+    font-family: inherit;
+    font-size: 17px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow:
+        0 4px 10px rgba(212, 143, 190, 0.2),
+        0 0 0 2px rgba(255, 255, 255, 0.3),
+        inset 0 1px 2px white;
+    transition:
+        transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1),
+        box-shadow 0.3s ease,
+        filter 0.3s ease;
+}
+
+.button::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -120%;
+    width: 65%;
+    height: 200%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.8),
+        transparent
+    );
+    transform: rotate(25deg);
+    pointer-events: none;
 }
 
 .button:hover {
-    background-color: var(--lightpink-color);
+    transform: translateY(-5px) scale(1.035);
+    filter: saturate(1.12) brightness(1.04);
+    box-shadow:
+        0 8px 22px rgba(255, 160, 216, 0.42),
+        0 0 20px rgba(220, 188, 255, 0.55),
+        inset 0 1px 3px white;
+}
+
+.button:hover::before {
+    animation: button-glitter 0.8s ease forwards;
 }
 
 .button:active {
-    background-color: var(--darkpink-color);
+    transform: scale(0.94);
+    box-shadow:
+        0 0 28px rgba(255, 174, 225, 0.65),
+        inset 0 0 12px rgba(255, 255, 255, 0.7);
+}
+
+.button:focus-visible {
+    outline: 2px solid #b97891;
+    outline-offset: 3px;
+}
+
+#console {
+    width: 100%;
+    max-width: 560px;
+    height: 260px;
+    margin: 8px;
+    padding: 14px;
+    overflow-y: auto;
+    border: 1px solid rgba(255, 211, 246, 0.85);
+    border-radius: 16px;
+    background: linear-gradient(
+        145deg,
+        rgba(38, 27, 48, 0.96),
+        rgba(53, 36, 64, 0.94),
+        rgba(36, 34, 52, 0.96)
+    );
+    color: #c9ffe4;
+    font-family: Consolas, monospace;
+    font-size: 13px;
+    line-height: 1.7;
+    box-shadow:
+        0 0 0 2px rgba(255, 255, 255, 0.2),
+        0 0 15px rgba(255, 166, 224, 0.35),
+        0 0 35px rgba(190, 158, 255, 0.22),
+        inset 0 0 25px rgba(219, 178, 255, 0.07);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    transition:
+        box-shadow 0.3s ease,
+        border-color 0.3s ease;
+}
+
+#console:hover {
+    border-color: #ffd8f3;
+    box-shadow:
+        0 0 0 2px rgba(255, 255, 255, 0.24),
+        0 0 22px rgba(255, 166, 224, 0.48),
+        0 0 42px rgba(190, 158, 255, 0.3),
+        inset 0 0 25px rgba(219, 178, 255, 0.1);
+}
+
+#console::-webkit-scrollbar {
+    width: 6px;
+}
+
+#console::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: linear-gradient(#f4c6df, #d7c4ff);
+}
+
+#console::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::selection {
+    color: #714d75;
+    background: #ffd4eb;
+}
+
+@keyframes fairy-glow {
+    from {
+        opacity: 0.6;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes aurora-dream {
+    from {
+        transform: rotate(0deg) scale(1);
+    }
+
+    to {
+        transform: rotate(360deg) scale(1);
+    }
+}
+
+@keyframes title-float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-3px);
+    }
+}
+
+@keyframes title-shimmer {
+    0%, 65% {
+        left: -100%;
+    }
+
+    100% {
+        left: 160%;
+    }
+}
+
+@keyframes button-glitter {
+    from {
+        left: -120%;
+    }
+
+    to {
+        left: 160%;
+    }
+}
+
+@media (max-width: 600px) {
+    body {
+        padding: 16px;
+    }
+
+    #title {
+        font-size: 24px;
+    }
+
+    .button {
+        max-width: calc(100% - 16px);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    body::before,
+    body::after,
+    #title,
+    #title::after,
+    .button::before {
+        animation: none;
+    }
+
+    .button,
+    #title,
+    #console {
+        transition: none;
+    }
 }

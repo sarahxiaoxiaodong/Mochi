@@ -7,11 +7,14 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>ESP32 LED Controller</h1>
-
+    <video autoplay muted loop playsinline id="bg-video">
+        <source src="bgm.mp4" type="video/mp4">
+    </video>
+    <h1 id="title">ESP32 LED Controller</h1>
     <button class="button" id="connect">Connect</button>
     <button class="button" id="led-on">On</button>
     <button class="button" id="led-off">Off</button>
+    <div id="console">• Ouput Console</div>
     <script src="script.js"></script>
 </body>
 </html>
